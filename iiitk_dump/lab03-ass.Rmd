@@ -1,0 +1,295 @@
+---
+title: "Lab Assignment 03"
+author: "Utkarsh Thusoo - 2020MCS120017"
+date: "15/09/2020"
+output:
+  html_document: default
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(dplyr)
+library(gapminder)
+library(tidyverse)
+library(ggplot2)
+library(rmarkdown)
+```
+
+
+**Q1. Can you obtain the plot shown below?**
+
+```{r A1}
+by_continent <- gapminder %>% 
+                  filter(year %in% c(2007,1962))
+                 
+ggplot(by_continent, aes(gdpPercap,lifeExp, col=continent)) +  
+  geom_point() +  
+  facet_grid(continent~year)
+```
+
+<br />
+
+**Q2. The plot shown below is the population of India from 1952 to 2007**
+
+```{r A2}
+between_1952_2007 <- gapminder %>% 
+                  filter(between(year, 1952, 2007)) %>% 
+                  filter(country=="India")
+
+ggplot(between_1952_2007, aes(x=year, y=pop)) + 
+  geom_point()
+```
+
+<br />
+
+**Q3. How to add a coloumn to the dataset in this manner?**
+
+```{r A3}
+
+by_mutate <- gapminder %>% 
+                 mutate(dollars_per_day=gdpPercap/pop/365)
+by_mutate
+```
+
+<br />
+
+**Q4. Obtain the result shown below**
+
+```{r A4}
+
+by_filter <- gapminder %>%
+                filter(year==2007) %>% 
+                filter(country=="United States")
+
+paged_table(by_filter, options = list(rows.print = 10))
+```
+
+<br />
+
+**Q5. Obtain the result**
+
+```{r A5}
+
+by_sort <- gapminder %>%
+               arrange(gdpPercap)
+
+paged_table(by_sort, options = list(rows.print = 10))
+```
+
+<br />
+
+**Q6. What is the lowest life expectancy in the gapminder dataset? Which country and year does it correspond to? If you run the correct code your answer will look as shown below:**
+
+```{r A6}
+
+by_lifeexp <- gapminder %>%
+               arrange(lifeExp)
+paged_table(by_lifeexp, options = list(rows.print = 10))
+```
+
+<br />
+
+**Q7. Obtain the result as shown below:**
+
+```{r A7}
+
+by_year <- gapminder %>%
+              filter(year==1952) %>% 
+              arrange(desc(gdpPercap))
+paged_table(by_year, options = list(rows.print = 10))
+```
+
+<br />
+
+**Q8. What was the most populous European country in 1992? Write appropriate dplyr code using the pipe to display the information you need to answer this question:**
+
+```{r A8}
+
+by_year <- gapminder %>%
+              filter(continent=="Europe") %>% 
+              filter(year == 1992) %>% 
+              arrange(desc(pop))
+
+paged_table(by_year, options = list(rows.print = 10))
+```
+
+<br />
+
+**Q9. Write the solution for Qn 08 without using pipe symbol**
+
+```{r A9}
+paged_table(arrange(filter(gapminder, continent=="Europe" & year == 1992), desc(pop)), options = list(rows.print = 10))
+```
+
+<br />
+
+**Q10. Obtain the plot shown below:(The year is 2007) **
+
+```{r A10}
+
+by_year <- gapminder %>%
+              filter(year == 2007)
+
+ggplot(by_year, aes(x=gdpPercap, y=lifeExp)) + 
+  geom_point() + 
+  scale_x_log10()
+```
+
+<br />
+
+**Q11.Obtain the plot as shown below for the year 1952 **
+
+```{r A11}
+
+by_year <- gapminder %>%
+              filter(year == 1952)
+
+ggplot(by_year, aes(x=pop, y=lifeExp, color=year)) + 
+  geom_point() + 
+  scale_x_log10()
+```
+
+<br />
+
+**Q12. Obtain the plot as shown below: Hint: Make use of geom_density()** 
+
+```{r A12}
+
+ggplot(gapminder, aes(pop)) + 
+  geom_density() + 
+  facet_wrap(~year) + 
+  scale_x_log10()
+```
+
+<br />
+
+**Q13.Obtain the plot as shown below for the year 1952 **
+
+```{r A13}
+
+by_continent <- gapminder %>% 
+                  filter(year %in% c(2007,1962, 1967, 2002))
+                 
+ggplot(by_continent, aes(pop,lifeExp, col=continent)) +  
+  geom_point() +  
+  facet_grid(continent~year)+
+  scale_x_log10()
+```
+
+<br />
+
+**Q14. Can you obtain the histogram as shown here? **
+
+```{r A14}
+by_continent <- gapminder
+ggplot(by_continent, aes(x= lifeExp)) +   
+  geom_histogram() 
+```
+
+<br />
+
+**Q15. Obtain the following graph **
+
+```{r A15}
+
+by_continent <- gapminder %>% 
+                  group_by(continent)
+                 
+ggplot(by_continent, aes(x= gdpPercap, y=lifeExp, color=continent)) + 
+  geom_point()+ 
+  facet_wrap(~continent) + 
+  geom_smooth(method="loess") 
+```
+
+<br />
+
+**Q16. Answer the following based on the code given below **
+
+a. `gapminder %>% filter(year == 2007, country == 'United States')`  
+    When I displayed data for the US in 2007, I put quotes around United States but not around year.Explain why?  
+__*Because year is an integer while continent here is factor represented as strings.*__  
+
+b. Which country had the higher life expectancy in 1977: Ireland or Brazil? Which had the higher GDP per capital?  
+__*Ireland has higher life expectancy and GDP*__
+
+```{r A16 }
+
+q2_a <- gapminder %>% 
+          filter(year == 1997) %>% 
+          filter(country %in% c("Ireland", "Brazil")) %>%  
+          arrange(desc(lifeExp))
+
+q2_a
+
+q2_b <- gapminder %>% 
+          filter(year == 1997) %>% 
+          filter(country %in% c("Ireland", "Brazil")) %>%  
+          arrange(desc(gdpPercap))
+
+q2_b
+```
+
+<br />
+
+**Q17. Answer the following: **
+
+a. Make a scatterplot as shown below with pop on the x-axis and lifeExp on the y-axis using gapminder_2007. Does there appear to be a relationship between population and life expectancy? One line of code is provided for creating `gapminder_2007 gapminder_2007 <- gapminder %>% filter(year == 2007)`  
+</br>
+**_There does not appear to be a correlation between `lifeExp` and `population` which can be identified from the scatterplot._**  
+
+```{r A17 (a)}
+gapminder_2007 <- gapminder %>% 
+                    filter(year == 2007)
+
+ggplot(gapminder_2007, aes(x=pop, y=lifeExp)) + 
+  geom_point()
+```
+
+b. Re-write your code from part 1. with gdpPercap on the y-axis  
+
+```{r A17 (b)}
+gapminder_2007 <- gapminder %>% 
+                    filter(year == 2007)
+
+ggplot(gapminder_2007, aes(x=pop, y=gdpPercap)) + 
+  geom_point()
+```
+
+<br />
+
+**Q18. Which country in the Americas had the shortest life expectancy in months in the year 1962? Write appropriate dplyr code using the pipe to display the information you need to answer this question. **
+
+```{r A18}
+
+by_lifeExp <- gapminder %>% 
+                  filter(year == 1962) %>% 
+                  filter(continent == "Americas") %>% 
+                  arrange(lifeExp) %>% 
+                  mutate(lifeExpMonths=lifeExp*12)
+  
+paged_table(by_lifeExp, options = list(rows.print = 10))
+```
+
+<br />
+
+**Q19 Perform the following **  
+
+a. Create a tibble called gapminder_1952 that contains data from gapminder from 1952
+
+```{r A19 (a)}
+gapminder_1952 <- gapminder %>% 
+                    filter(year == 1952)
+```
+
+b. Use gapminder_1952 from the previous part to create a scatter plot with population on the x-axis, life expectancy on the y-axis, and continent represented by the color of the points. Plot population on the log scale (base 10)
+
+```{r A19 (b)}
+gapminder_1952 <- gapminder %>% 
+                  filter(year == 1952)
+
+ggplot(gapminder_1952 , aes(x=pop, y=lifeExp, color=continent)) + 
+    geom_point() + 
+    scale_x_log10()
+```
+

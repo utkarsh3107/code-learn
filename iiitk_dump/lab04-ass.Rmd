@@ -1,0 +1,187 @@
+---
+title: "Lab Assignment 04"
+author: "Utkarsh Thusoo - 2020MCS120017"
+date: "07/10/2020"
+output:
+  html_document: default
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(dplyr)
+library(gapminder)
+library(tidyverse)
+library(ggplot2)
+library(rmarkdown)
+library(magrittr)
+flying_etiquette <- read.csv("/media/sf_vmshare/iiitk/513/flying-etiquette.csv")
+```
+
+
+
+**Q1. Changing characters to factors?**
+
+a. Change all character columns into factor columns.
+```{r A1 (a)}
+flying_etiquette %<>% mutate_if(is.character, as.factor)
+str(flying_etiquette)
+```
+
+<br />
+
+b. Remove people who responded “Never” to a question asking if they have flown before.
+
+<br />
+
+```{r A1 (b)}
+missing <- which(flying_etiquette$How.often.do.you.travel.by.plane. == "Never", arr.ind = TRUE)
+fe_1 <- flying_etiquette[-missing, ]
+```
+
+<br />
+
+**Q2. Tidying data?**
+
+a. Select columns where “rude” is in the column name.
+
+```{r A2 (a)}
+rude_columns <- which(str_detect(colnames(fe_1),"rude"))
+rude_columns
+```
+
+<br />
+
+b. Change the dataset from “wide” to “long”, with the variable names in a column called “response_var” and the values in a column called “value.”
+
+```{r A2 (b)}
+fe_2 <- gather(fe_1,response_var,value,rude_columns)
+str(fe_2)
+```
+
+<br />
+
+**Q3. Cleaning up strings?**
+
+a. Use str_remove to remove everything before and including “rude to” (with the space at the end) in the response_var column.
+
+```{r A3 (a)}
+fe_3 <- fe_2 %>% mutate(response_var=str_remove(response_var,".*rude.to"))
+str(fe_3)
+```
+
+<br />
+
+b. Use str_remove to remove “on a plane” from the response_var column.
+
+```{r A3 (b)}
+fe_3 <- fe_3 %>% mutate(response_var=str_remove(response_var,'on.a.plane'))
+str(fe_3)
+```
+
+<br />
+
+**Q4. Dichotomizing variables?**
+
+a. Remove rows with NA in the value column.
+
+```{r A4 (a)}
+fe_4 <- fe_3 %>% drop_na(value)
+str(fe_4)
+```
+
+<br />
+
+b. Create a new variable, rude, which is 0 if the value column is “No, not rude at all” or “No, not at all rude” and 1 otherwise.
+
+```{r A4 (b)}
+fe_4 <- fe_4 %>%  mutate(rude=ifelse(fe_4$value %in% c("No, not at all rude","No, not rude at all"),0,1))
+str(fe_4)
+```
+
+<br />
+
+**Q5. Summarizing data?**
+
+a. Summarize the data set into two columns, the question (i.e. response_var), and a new column, perc_rude, the mean of the rude column for each question.  
+b. Save it as rude_behaviors and then view your new dataset.
+
+```{r A5 (a)}
+rude_behaviors <-fe_4 %>% group_by(response_var) %>% summarise(perc_rude=mean(rude))
+str(rude_behaviors)
+```
+
+<br />
+
+
+**Q6. Create a plot?**
+
+a. Using the dataset rude_behaviors in the previous question Order response_var by perc_rude.
+
+```{r A6 (a)}
+sorted_behaviour <- arrange(rude_behaviors, perc_rude)
+```
+
+b. Make a bar plot of response_var by perc_rude. Save it as initial_plot.
+
+```{r A6 (b)}
+initial_plot <- ggplot(sorted_behaviour, aes(x = reorder(response_var, perc_rude), y=perc_rude)) + geom_col() + labs(x = "response_var")
+```
+
+<br />
+
+**Q7. Fixing Labels?**
+
+a. Add its title, subtitle, and caption
+
+```{r A7 (a)}
+captioned_plot <- initial_plot + labs(title= "Hell is Other People in A Pressurized Metal Tube", subtitle = "Percentage of 874 air-passenger respondents who said action is very or somewhat rude", caption = "Source: Survey Monkey Audience")
+captioned_plot
+```
+
+b. Set the labels for x and y-axis as empty strings.  
+c. Save it as a new plot, titled_plot.
+
+```{r A7 (b)}
+titled_plot <- captioned_plot + labs(x = "", y = "")
+titled_plot
+```
+
+<br />
+
+**Q8. Flipping coordinates?**
+
+a. Flip the x- and y-axis.
+
+```{r A8 (a)}
+
+flipped_plot <- titled_plot + coord_flip()
+flipped_plot
+```
+
+b. Remove the x-axis ticks.
+
+```{r A8 (b)}
+flipped_plot + theme(axis.text.x = element_blank())
+
+```
+
+<br />
+
+**Q9. Find out?**
+
+a. The highest frequency of education
+
+```{r A9 (a)}
+
+tail(names(sort(table(flying_etiquette$Education))), 1)
+
+```
+
+b. The location where most people are from
+
+```{r A9 (b)}
+ tail(names(sort(table(flying_etiquette$Location..Census.Region.))), 1)
+```
+
+<br />

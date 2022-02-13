@@ -1,0 +1,194 @@
+---
+title: "project-01"
+author: "Utkarsh Thusoo - 2020MCS120017"
+date: "11/11/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(tidyverse)
+library(lubridate)
+library(ggplot2)
+library(tidyr)
+library(dplyr)
+library(rmarkdown)
+library(forecast)
+library(scales)
+
+filenames <- c('time_series_covid19_confirmed_global.csv', 
+               'time_series_covid19_deaths_global.csv', 
+               'time_series_covid19_recovered_global.csv')
+
+url.path <- paste0('https://raw.githubusercontent.com/CSSEGISandData/COVID-19/', 'master/csse_covid_19_data/csse_covid_19_time_series/')
+
+## download files to local
+download <- function(filename) {
+  url <- file.path(url.path, filename)
+  dest <- file.path('./', filename)
+  download.file(url, dest)
+}
+
+bin <- lapply(filenames, download)
+
+## load data into R
+raw.data.confirmed <- read.csv('time_series_covid19_confirmed_global.csv')
+raw.data.deaths <- read.csv('time_series_covid19_deaths_global.csv')
+raw.data.recovered <- read.csv('time_series_covid19_recovered_global.csv')
+
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+clean_data <- function(data){
+  data <- data %>% 
+    select(-c(Province.State, Lat, Long)) %>% 
+    rename(country = Country.Region)
+  
+  data <- data %>% 
+    gather(key = date, value = count, -country)
+  
+  data <- data %>% 
+    mutate(date = date %>% 
+             substr(2,8) %>% 
+             mdy())
+
+  
+  data <- data %>%  
+    group_by(country, date) %>% 
+    summarise(count = sum(count, na.rm = T)) %>% 
+    as.data.frame()
+
+  return(data)
+}
+
+confirmed_cases <- raw.data.confirmed %>% 
+  clean_data() %>% 
+  rename(confirmed = count)
+
+death_cases <- raw.data.deaths %>% 
+  clean_data() %>% 
+  rename(deaths = count)
+
+recovered_cases <- raw.data.recovered %>% 
+  clean_data() %>% 
+  rename(recovered = count)
+
+
+covid_cases <- confirmed_cases %>% 
+  merge(death_cases, all = T) %>% 
+  merge(recovered_cases, all = T)
+
+paged_table(covid_cases, options = list(rows.print = 10))
+```
+
+## Deaths per day
+Gives number of deaths in each country grouped by month, year
+
+
+```{r pressure, echo=FALSE}
+death_cases_1 <- death_cases %>% 
+  mutate(month = format(date, "%m") ,  year = format(date, "%Y")) %>% 
+  group_by(month, year, country) %>% 
+  summarise(total = max(deaths))
+```
+
+## Country with maximum deaths month wise
+
+
+```{r r2, echo=FALSE}
+maximum_deaths <- death_cases %>% 
+  mutate(month = format(date, "%m") ,  year = format(date, "%Y")) %>% 
+  filter(year == "2020") %>% 
+  group_by(month, year, country) %>% 
+  summarise(total = max(deaths)) %>% 
+  group_by(month) %>% 
+  filter(total == max(total))
+
+ggplot(maximum_deaths, aes(x = month , y = total)) + 
+  geom_point(aes(col = country, size = total)) + 
+  geom_smooth(method="loess", se=F) + 
+  labs(
+    subtitle = "Total Deaths", 
+    y = "Deaths", 
+    x = "Month", 
+    title = "Monthly Deaths", 
+    caption = "Source : JH")
+```
+
+## Country with maximum confirmed month wise
+
+```{r r3, echo=FALSE}
+maximum_confirmed <- confirmed_cases %>% 
+  mutate(month = format(date, "%m") ,  year = format(date, "%Y")) %>% 
+  filter(year == "2020") %>% 
+  group_by(month, year, country) %>% 
+  summarise(total = max(confirmed)) %>% 
+  group_by(month) %>% 
+  filter(total == max(total))
+
+ggplot(maximum_confirmed, aes(x = month , y = total)) + 
+  geom_point(aes(col = country, size = total)) + 
+  geom_smooth(method="loess", se=F) + 
+  scale_y_continuous(labels = comma) +
+  labs(
+    subtitle = "Total Confirmed", 
+    y = "Confirmed", 
+    x = "Month", 
+    title = "Monthly Confirmed", 
+    caption = "Source : JH")
+```
+
+## Country with maximum recovered month wise
+
+```{r r4, echo=FALSE}
+maximum_recovered <- recovered_cases %>% 
+  mutate(month = format(date, "%m") ,  year = format(date, "%Y")) %>% 
+  filter(year == "2020") %>% 
+  group_by(month, year, country) %>% 
+  summarise(total = max(recovered)) %>% 
+  group_by(month) %>% 
+  filter(total == max(total))
+
+ggplot(maximum_recovered, aes(x = month , y = total)) + 
+  geom_point(aes(col = country, size = total)) + 
+  geom_smooth(method="loess", se=F) + 
+  scale_y_continuous(labels = comma) +
+  labs(
+    subtitle = "Total Recovered", 
+    y = "Recovered", 
+    x = "Month", 
+    title = "Monthly Recovered", 
+    caption = "Source : JH")
+```
+
+## Country with maximum recovered month wise
+
+```{r r5, echo=FALSE}
+maximum_recovered <- recovered_cases %>% 
+  mutate(month = format(date, "%m") ,  year = format(date, "%Y")) %>% 
+  filter(year == "2020") %>% 
+  group_by(month, year, country) %>% 
+  summarise(total = max(recovered)) %>% 
+  group_by(month) %>% 
+  filter(total == max(total))
+
+ggplot(maximum_recovered, aes(x = month , y = total)) + 
+  geom_point(aes(col = country, size = total)) + 
+  geom_smooth(method="loess", se=F) + 
+  scale_y_continuous(labels = comma) +
+  labs(
+    subtitle = "Total Recovered", 
+    y = "Recovered", 
+    x = "Month", 
+    title = "Monthly Recovered", 
+    caption = "Source : JH")
+```
+
+

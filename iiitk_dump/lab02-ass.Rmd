@@ -1,0 +1,298 @@
+---
+title: "Lab Assignment 02"
+author: "Utkarsh Thusoo - 2020MCS120017"
+date: "06/09/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+**Q1. What output will the following R script produce? Explain brieﬂy why?**
+
+```{r Q1}
+x <- c(TRUE, FALSE, 0L) 
+typeof(x)
+```
+
+**Explanation:**  
+We are creating a vector `x` which contains different types of values i.e `TRUE` which corresponds to `logical` class while `0L` which belongs to `integer` class. By definition vector can contain only one type so R performs something called coercion to so that all values belong to the same class.
+
+Coercion rule goes as: *logical $\rightarrow$ integer $\rightarrow$ numeric $\rightarrow$ complex $\rightarrow$ character*  
+<br />
+
+
+**Q2. What output will the following R script produce? Explain briefly why?**
+
+```{r Q2}
+TRUE | NA
+```
+
+**Explanation:**  
+`|` is a logical operation which behaves like `OR` gate.
+
+`NA` is a logical constant of length 1 which contains a missing value indicator. `NA` can be coerced to any other vector type except raw. Logical computations treat `NA` as a missing `TRUE/FALSE` value, and so may return `TRUE` or `FALSE` if the expression does not depend on the NA operand.
+
+`OR` would make the whole condition `TRUE` if even one of the condition is `TRUE`. In the given operation as one condition is `TRUE` so output does not depend on the next attribute and the result is `TRUE`.  
+
+<br />
+
+**Q3. Let x be defined as:** $x <- c(‘0’,‘10’,‘5’,‘20’,‘15’,‘10’,‘0’,‘5’)$.  
+Write an R function that would turn x into a factor whose ordering corresponds to the numerical ordering of x
+
+```{r Q3}
+x <- c('0','10','5','20','15','10','0','5')
+xFactor <- factor(x , levels = c('0','5','10','15','20') , ordered =TRUE)
+xFactor
+```
+
+**Explanation:**
+`factor()` operation converts vector to a factor, `levels` will make help us define the level which will help in conversion and `ordered` will make it an ordered factor.  
+
+<br />
+
+**Q4. In R, if mtcars is a data frame, why does *mtcars[1:20]* return an error? How does it differ from the similar *mtcars[1:20, ]*?**  
+
+```{r Q4, eval=FALSE}
+mtcars[1:20]
+mtcars[1:20, ]
+```
+
+**Explanation:**  
+1. mtcars data frame has 32 observations on 11 (numeric) variables.  
+2. `dataframe[value]`:-- will return that column number  
+3. `dataframe[value1:value2]`:-- will return columns from value1 to value2. For code *mtcars[1:20]* as number of columns in input are less than 20 we get an error  
+4. `dataframe[value1:value2,]` :-- returns number of rows from value1 to value 2 and all columns. For input *mtcars[1:20, ]* we get 20 rows and all columns    
+
+<br />
+
+**Q5. Fix each of the following common data frame subsetting errors in R:**
+
+```{r Q5, eval = FALSE}
+mtcars[mtcars$cyl = 4, ]
+mtcars[-1:4, ]
+mtcars[mtcars$cyl <= 5]
+mtcars[mtcars$cyl == 4 | 6, ]
+```
+
+**Explanation:**  
+
+```{r A5}
+# Extract all rows where cyl value is 4
+mtcars[mtcars$cyl == 4, ]
+# Exclude rows 1 to 4
+mtcars[-c(1:4), ]
+# Extract all rows where cyl value <= 5
+mtcars[mtcars$cyl <= 5, ]
+# Extract all rows where cyl value is either 4 OR 6
+mtcars[mtcars$cyl == 4 || 6, ]
+```
+  
+<br />
+
+**Q6. Create the vector (20,19,. . . ,2,1) in R** 
+
+**Explanation:**
+
+```{r A6}
+#Creating vector in backward direction
+vector <- c(20:1)
+vector
+```
+
+<br />
+  
+**Q7. Create a 6 by 10 matrix of random integers in R :**  
+
+**Explanation:**  
+`matric()` operation creates a matrix, `nrow` will set number of rows and `ncol` will set number of columns.  
+
+```{r A7}
+mat <- matrix(1:5 , nrow = 6 , ncol = 10)
+mat
+```
+
+<br />
+
+**Q8. From Q7, Write a function to find the number of entries in each row of a matrix that are greater than 4.**
+
+**Explanation:**  
+`which(x, arr.ind = FALSE, useNames = TRUE)`  
+Give the `TRUE` indices of a logical object, allowing for array indices.  
+
+1. `x` a logical vector or array. NAs are allowed and omitted (treated as if FALSE).  
+2. `arr.ind` logical; should array indices be returned when x is an array?
+
+```{r A8}
+mat <- matrix(1:5 , nrow = 6 , ncol = 10)
+mat
+nrow(which(mat > 4, arr.ind = TRUE))
+```
+
+
+<br />
+
+**Q9. In continuation to the previous question Write a function to find how many rows have exactly two instances of the number 7.**
+
+**Explanation:**  
+`rowSums()` function in R Language is used to compute the sum of rows of a matrix or an array. `length()` function gets or sets the length of a vector (list) or other objects. Here using `rowSums()` we get the number of rows where value is 7
+
+```{r A9}
+mat <- matrix(1:10 , nrow = 6 , ncol = 10)
+mat
+length(which(rowSums(mat == 7) > 0))
+```
+
+
+<br />  
+
+**Q10. Create a vector of the values of $\ e^x cos(x)$ at x = 3, 3.1, 3.2,. . . ., 6.** 
+
+**Explanation:**  
+`exp` : Computes value of exponent
+`seq` : generates values from 3 to 6  
+
+```{r A10}
+x <- seq(from = 3, to = 6,  by = 0.1)
+result <- c(exp(x) * cos(x))
+result
+```
+
+
+
+<br />
+
+**Q11. Calculate the following by writing code snippets:**
+
+* $$\sum_{i=1}^{100} (i^3 + 4i^2)$$
+* $$\sum_{i=1}^{100} (\frac{2^i}{i} + \frac{3^i}{i^2} )$$
+
+
+**Explanation:**  
+``^`` is used to compute raise to the power value.
+```{r A11}
+sequence1 <- seq(from = 1, to = 100,  by = 1)
+eq1 <- sum(`^`(sequence1 , 3) + 4 * `^`(sequence1, 2))
+eq1
+
+sequence2 <- seq(from = 1, to = 25,  by = 1)
+eq2 <- sum((`^`(2, sequence2) / sequence2) + (`^`(3, sequence2) / `^`(sequence2, 2)))
+eq2
+```
+
+<br />  
+
+**Q12. Execute the following lines which create two vectors of random integers which are chosen with replacement from the integers 0, 1,. . . .., 999. Both vectors have length 250**
+
+Suppose $x = (x1, x2, ....xn)$ denotes the vector $xVec$ and $y = (y1, y2, ....yn)$ denotes the vector $yVec$.
+
+a. Create the vector $(y_2 − x_1, ...y_n − x_{n−1})$
+b. Calculate:
+
+$$\sum_{i=1}^{n-1} \frac{e^{-x_{i+1}}}{x_i + 10}$$
+
+**Explanation:**  
+
+```{r A12}
+set.seed(50)
+xVec <- sample(0:999, 250, replace=T)
+yVec <- sample(0:999, 250, replace=T)
+
+i <- seq(from = 1, to = 250,  by = 1)
+
+result1 = yVec[i+1] - xVec
+result1
+result2 = sum(exp(-xVec[i+1]) / (xVec[i] + 10), na.rm = TRUE)
+result2
+```
+
+<br />
+
+**Q13. This question uses the vectors $xVec$ and $yVec$ created in the previous question and the functions *sort, order, mean, sqrt, sum* and *abs*.**
+
+a. Pick out the values in $yVec$ which are > 600.
+b. What are the index positions in $yVec$ of the values which are $>$ 600?
+c. What are the values in $xVec$ which correspond to the values in $yVec$ which are $>$ 600? (By correspond, we mean at the same index positions.)
+d. How many values in $yVec$ are within 200 of the maximum value of the terms in $yVec$?
+e. How many numbers in $xVec$ are divisible by 2?
+f. Sort the numbers in the vector $xVec$ in the order of increasing values in $yVec$
+
+**Explanation:**
+
+```{r A13}
+set.seed(50)
+xVec <- sample(0:999, 250, replace=T)
+yVec <- sample(0:999, 250, replace=T)
+
+
+a <- yVec[yVec > 600]
+a
+b <- which(yVec > 600)
+b
+c <- which(xVec > 600)
+c
+c <- which(xVec == yVec && xVec > 600)
+c
+d <- length(which((max(yVec) - yVec) < 200)) 
+d
+e <- length(which((xVec %% 2) == 0))
+e
+f <- xVec[order(yVec)]
+f
+```
+<br />  
+
+**Q14. Try exploring the function cumprod() or any other function of your choice to calculate**
+
+$1 + \frac{2}{3} +(\frac{2}{3} \frac{4}{5})+ (\frac{2}{3} \frac{4}{5} \frac{6}{7}) + \cdots + (\frac{2}{3}\frac{4}{5}\cdots\frac{38}{39})$  
+
+**Explanation:**  
+`cumprod()` function in R Language is used to calculate the cumulative product of the vector passed as argument.
+
+```{r A14}
+numerator_sequence <- seq(from = 2,to = 38,by = 2)
+denominator_sequence <- seq(from = 3,to = 39, by = 2)
+result <- 1 + cumprod(numerator_sequence/denominator_sequence)
+result
+```
+
+<br />  
+
+**Q15. Consider the continuous function**
+
+\[
+  f(x) =
+    \begin{cases} 
+      x^2 + 2x + 3 & \text{if } x < 0 \\
+      x+3 & \text{if } 0 \leq x \leq 2 \\
+      x^2 + 4x -7 & \text{if } 2 \leq x
+    \end{cases}
+\]
+
+Write a function $tmpFn$ which takes a single argument $xVec$. The function should return the vector of values of the function f(x) evaluated at the values in $xVec$.
+
+**Explanation:**  
+`lappy(X, FUN)`
+`lapply` returns a list of the same length as `X`, each element of which is the result of applying `FUN` to the corresponding element of `X`.
+```{r A15}
+xVec <- c(-2, -1, 0 ,1, 2, 3, 4)
+
+tempFn <- function(x) {
+  if (x < 0){
+    return(`^`(x,2) + (2 * x) + 3)
+  }else if( x >= 0 && x <= 2){
+    return(x + 3)
+  }else if(x >= 2){
+    return(`^`(x,2) + (4 * x) - 7)
+  }
+}
+
+# Taking value from xVec
+lapply(xVec, tempFn)
+```
+
+
+
+
+
