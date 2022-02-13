@@ -1,7 +1,7 @@
 /**
  * 
  */
-package structural.flyweight;
+package design_patterns.structural.flyweight;
 
 import java.util.HashMap;
 

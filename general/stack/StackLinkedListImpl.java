@@ -1,6 +1,6 @@
-package stack;
+package general.stack;
 
-import linkedlist.LinkedList;
+import general.linkedlist.LinkedList;
 
 public class StackLinkedListImpl<T>{
     

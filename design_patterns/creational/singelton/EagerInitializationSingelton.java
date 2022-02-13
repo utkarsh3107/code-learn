@@ -4,7 +4,7 @@
 * even though client application might not be using it.
 * Here is the implementation of static initialization singleton class.
 */
-package creational.singelton;
+package design_patterns.creational.singelton;
 
 /**
  * @author utkarsh

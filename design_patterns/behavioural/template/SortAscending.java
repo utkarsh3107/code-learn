@@ -1,4 +1,4 @@
-package behavioural.template;
+package design_patterns.behavioural.template;
 
 public class SortAscending extends SortAlgo {
 

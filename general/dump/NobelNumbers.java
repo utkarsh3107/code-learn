@@ -17,7 +17,7 @@ Number of integers greater than 0
 is zero.
 */
 
-package selfstudy;
+package general.dump;
 
 import java.util.Set;
 import java.util.TreeSet;

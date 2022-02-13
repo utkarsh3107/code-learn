@@ -1,4 +1,4 @@
-package behavioural.mediator;
+package design_patterns.behavioural.mediator;
 
 public abstract class Colleague {
 

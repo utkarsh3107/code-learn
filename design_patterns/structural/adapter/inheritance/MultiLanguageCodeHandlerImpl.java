@@ -1,4 +1,4 @@
-package structural.adapter.inheritance;
+package design_patterns.structural.adapter.inheritance;
 
 public class MultiLanguageCodeHandlerImpl extends LanguageAdapter implements MultiLanguageCodeHandler {
 	

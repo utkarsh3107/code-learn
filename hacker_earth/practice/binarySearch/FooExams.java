@@ -37,7 +37,7 @@ In the 1st test case for t = 2 foo will be under stress because F(2)=30 > K, the
 In the 2nd test case for t = 8 foo will be under stess because F(8)=1263 > K, therefore he can study for a maximum time of 7 minutes continuously without having stress.
  */
 
-package practice.binarySearch;
+package hacker_earth.practice.binarySearch;
 
 import static java.lang.Math.pow;
 

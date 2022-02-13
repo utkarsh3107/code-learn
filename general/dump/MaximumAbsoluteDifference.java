@@ -1,4 +1,4 @@
-package selfstudy;
+package general.dump;
 
 public class MaximumAbsoluteDifference {
 

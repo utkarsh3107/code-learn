@@ -1,4 +1,4 @@
-package practice.binarySearch;
+package hacker_earth.practice.binarySearch;
 
 public class BinarySearchCeiling {
 

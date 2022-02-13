@@ -1,4 +1,4 @@
-package interview.capillary_12_2;
+package hacker_earth.interview.capillary_12_2;
 
 import java.io.BufferedReader;
 import java.io.IOException;

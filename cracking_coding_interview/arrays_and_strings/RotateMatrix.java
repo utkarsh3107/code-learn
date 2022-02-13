@@ -13,7 +13,7 @@
 	};
 
  */
-package arrays_and_strings;
+package cracking_coding_interview.arrays_and_strings;
 
 /**
  * @author utkarsh

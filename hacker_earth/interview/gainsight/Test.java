@@ -1,4 +1,4 @@
-package interview.gainsight;
+package hacker_earth.interview.gainsight;
 
 import java.util.ArrayList;
 import java.util.HashMap;

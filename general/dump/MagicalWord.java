@@ -1,7 +1,7 @@
 /**
  * 
  */
-package selfstudy;
+package general.dump;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;

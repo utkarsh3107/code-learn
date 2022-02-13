@@ -1,4 +1,4 @@
-package interview.cleartrip;
+package hacker_earth.interview.cleartrip;
 
 import java.io.BufferedReader;
 import java.io.IOException;

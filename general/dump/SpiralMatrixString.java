@@ -1,4 +1,4 @@
-package selfstudy;
+package general.dump;
 
 import java.util.ArrayList;
 import java.util.List;

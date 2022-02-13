@@ -1,4 +1,4 @@
-package structural.decorator;
+package design_patterns.structural.decorator;
 
 public class NutsDecorator extends IceCreamDecorator {
 	

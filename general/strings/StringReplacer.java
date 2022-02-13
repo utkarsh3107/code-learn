@@ -1,3 +1,5 @@
+package general.strings;
+
 public class StringReplacer{
 
     public static void main(String[] args){

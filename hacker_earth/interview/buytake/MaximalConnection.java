@@ -1,4 +1,4 @@
-package interview.buytake;
+package hacker_earth.interview.buytake;
 
 import java.io.BufferedReader;
 import java.io.IOException;

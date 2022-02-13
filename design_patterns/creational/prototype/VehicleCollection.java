@@ -1,7 +1,7 @@
 /**
  * 
  */
-package creational.prototype;
+package design_patterns.creational.prototype;
 
 import java.util.ArrayList;
 import java.util.List;

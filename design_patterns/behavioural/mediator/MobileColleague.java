@@ -1,7 +1,7 @@
 /**
  * 
  */
-package behavioural.mediator;
+package design_patterns.behavioural.mediator;
 
 /**
  * @author utkarsh
@@ -11,7 +11,6 @@ public class MobileColleague extends Colleague {
 
 	public MobileColleague(Mediator mediator) {
 		super(mediator);
-		// TODO Auto-generated constructor stub
 	}
 
 	/* (non-Javadoc)

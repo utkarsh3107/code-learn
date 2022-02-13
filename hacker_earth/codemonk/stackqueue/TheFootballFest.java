@@ -1,4 +1,4 @@
-package codemonk.stackqueue;
+package hacker_earth.codemonk.stackqueue;
 
 import java.io.BufferedReader;
 import java.io.IOException;

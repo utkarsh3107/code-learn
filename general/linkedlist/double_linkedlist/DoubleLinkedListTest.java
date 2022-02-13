@@ -1,4 +1,4 @@
-package linkedlist.double_linkedlist;
+package general.linkedlist.double_linkedlist;
 
 public class DoubleLinkedListTest{
     

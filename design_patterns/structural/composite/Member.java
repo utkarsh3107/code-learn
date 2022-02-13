@@ -1,7 +1,7 @@
 /**
  * 
  */
-package structural.composite;
+package design_patterns.structural.composite;
 
 /**
  * @author utkarsh

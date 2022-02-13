@@ -1,4 +1,4 @@
-package linkedlist;
+package general.linkedlist;
 
 class LinkedListImpl<T>{
 	LinkedList<T> head = null;

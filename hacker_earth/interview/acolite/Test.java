@@ -1,4 +1,4 @@
-package interview.acolite;
+package hacker_earth.interview.acolite;
 
 public class Test {
 	public static void main(String[] args) {

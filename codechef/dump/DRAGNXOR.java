@@ -1,3 +1,5 @@
+package codechef.dump;
+
 import java.math.*;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;

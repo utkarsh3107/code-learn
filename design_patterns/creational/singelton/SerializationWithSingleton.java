@@ -1,7 +1,7 @@
 /**
  * 
  */
-package creational.singelton;
+package design_patterns.creational.singelton;
 
 import java.io.Serializable;
 

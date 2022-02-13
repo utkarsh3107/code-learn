@@ -2,7 +2,7 @@
  * Static block initialization implementation is similar to eager initialization, 
  * except that instance of class is created in the static block that provides option for exception handling.
  */
-package creational.singelton;
+package design_patterns.creational.singelton;
 
 /**
  * @author utkarsh

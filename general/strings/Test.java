@@ -1,3 +1,5 @@
+package general.strings;
+
 import java.util.Arrays;
 
 public class Test{

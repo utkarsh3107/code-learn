@@ -1,7 +1,7 @@
-package structural.facade;
+package design_patterns.structural.facade;
 
-import structural.facade.FacadePattern.DBType;
-import structural.facade.FacadePattern.ReportType;
+import design_patterns.structural.facade.FacadePattern.DBType;
+import design_patterns.structural.facade.FacadePattern.ReportType;
 
 public class Test {
 

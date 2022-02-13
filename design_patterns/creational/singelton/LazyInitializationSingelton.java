@@ -2,7 +2,7 @@
  * Lazy initialization method to implement Singleton pattern creates the instance in the global access method. 
  * Here is the sample code for creating Singleton class with this approach.
  */
-package creational.singelton;
+package design_patterns.creational.singelton;
 
 /**
  * @author utkarsh

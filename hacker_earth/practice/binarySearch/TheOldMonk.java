@@ -34,7 +34,7 @@ Explanation
 In the first case, we can see that 3 in the second array is the number which is equal to the 3 in the first array, and the difference between their positions is 5. So, the answer is 5.
  */
 
-package practice.binarySearch;
+package hacker_earth.practice.binarySearch;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;

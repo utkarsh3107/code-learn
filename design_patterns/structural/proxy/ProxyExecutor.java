@@ -1,7 +1,7 @@
 /**
  * 
  */
-package structural.proxy;
+package design_patterns.structural.proxy;
 
 /**
  * @author utkarsh

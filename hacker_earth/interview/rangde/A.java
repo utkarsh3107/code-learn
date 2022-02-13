@@ -1,4 +1,4 @@
-package interview.rangde;
+package hacker_earth.interview.rangde;
 
 import java.util.*;
 

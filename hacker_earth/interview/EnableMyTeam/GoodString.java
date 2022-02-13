@@ -1,4 +1,4 @@
-package interview.EnableMyTeam;
+package hacker_earth.interview.EnableMyTeam;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;

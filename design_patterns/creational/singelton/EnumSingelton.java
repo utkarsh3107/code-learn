@@ -7,7 +7,7 @@
  * 
  * http://javarevisited.blogspot.in/2012/07/why-enum-singleton-are-better-in-java.html#axzz4qYvqQKa5
  */
-package creational.singelton;
+package design_patterns.creational.singelton;
 
 /**
  * @author utkarsh

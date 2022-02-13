@@ -1,4 +1,4 @@
-package codemonk.basicprogramming.basicIO;
+package hacker_earth.codemonk.basicprogramming.basicIO;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;

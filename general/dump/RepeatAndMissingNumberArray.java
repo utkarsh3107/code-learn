@@ -33,7 +33,7 @@ A = 3, B = 4
 
 
  */
-package selfstudy;
+package general.dump;
 
 import java.util.ArrayList;
 

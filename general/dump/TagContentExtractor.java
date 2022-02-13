@@ -38,7 +38,7 @@ So wait for a while
 None
 Imtiaz has a secret crush
  */
-package selfstudy;
+package general.dump;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;

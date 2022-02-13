@@ -1,7 +1,7 @@
 /**
  * 
  */
-package structural.bridge;
+package design_patterns.structural.bridge;
 
 /**
  * @author utkarsh

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package structural.adapter.composition;
+package design_patterns.structural.adapter.composition;
 
 /**
  * @author utkarsh

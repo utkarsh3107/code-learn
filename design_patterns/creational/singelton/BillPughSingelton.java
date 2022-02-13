@@ -9,7 +9,7 @@
  * Singleton class as it doesn’t require synchronization. I am using this approach in many of my projects and 
  * it’s easy to understand and implement also.
  */
-package creational.singelton;
+package design_patterns.creational.singelton;
 
 /**
  * @author utkarsh

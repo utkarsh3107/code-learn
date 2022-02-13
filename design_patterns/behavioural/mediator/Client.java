@@ -1,7 +1,7 @@
 /**
  * 
  */
-package behavioural.mediator;
+package design_patterns.behavioural.mediator;
 
 /**
  * @author utkarsh

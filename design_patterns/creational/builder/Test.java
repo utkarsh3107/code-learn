@@ -1,7 +1,7 @@
 /**
  * 
  */
-package creational.builder;
+package design_patterns.creational.builder;
 
 /**
  * @author utkarsh

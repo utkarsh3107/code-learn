@@ -5,7 +5,7 @@
  * Below implementation works fine and provides thread-safety but it reduces the performance because of cost associated with the synchronized method, 
  * although we need it only for the first few threads who might create the separate instances 
  */
-package creational.singelton;
+package design_patterns.creational.singelton;
 
 /**
  * @author utkarsh

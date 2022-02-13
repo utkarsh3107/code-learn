@@ -1,7 +1,7 @@
 /**
  * 
  */
-package behavioural.template;
+package design_patterns.behavioural.template;
 
 /**
  * @author utkarsh

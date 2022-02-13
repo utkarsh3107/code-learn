@@ -1,4 +1,4 @@
-package binarytree;
+package general.binarytree;
 
 public class BinaryTreeImplTest{
 

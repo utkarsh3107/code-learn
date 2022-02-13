@@ -1,4 +1,4 @@
-package interview.zauba;
+package hacker_earth.interview.zauba;
 
 import java.io.BufferedReader;
 import java.io.IOException;

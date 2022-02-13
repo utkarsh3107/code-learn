@@ -1,4 +1,4 @@
-package structural.proxy;
+package design_patterns.structural.proxy;
 
 public interface ExecuteCommand {
 

@@ -1,4 +1,4 @@
-package interview.acolite;
+package hacker_earth.interview.acolite;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;

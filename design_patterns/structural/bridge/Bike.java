@@ -1,4 +1,4 @@
-package structural.bridge;
+package design_patterns.structural.bridge;
 
 public class Bike extends Vehicle {
 	

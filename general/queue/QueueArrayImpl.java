@@ -1,4 +1,4 @@
-package queue;
+package general.queue;
 
 public class QueueArrayImpl<T>{
     

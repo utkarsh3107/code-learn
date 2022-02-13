@@ -1,4 +1,4 @@
-package structural.adapter.composition;
+package design_patterns.structural.adapter.composition;
 
 public class MultiLanguageCodeHandlerImpl implements MultiLanguageCodeHandler {
 

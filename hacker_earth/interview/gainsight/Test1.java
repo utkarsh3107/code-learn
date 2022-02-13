@@ -1,4 +1,4 @@
-package interview.gainsight;
+package hacker_earth.interview.gainsight;
 
 public class Test1 {
 

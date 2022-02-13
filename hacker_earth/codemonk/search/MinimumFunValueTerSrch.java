@@ -1,4 +1,4 @@
-package codemonk.search;
+package hacker_earth.codemonk.search;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;

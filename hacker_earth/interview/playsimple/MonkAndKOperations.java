@@ -1,4 +1,4 @@
-package interview.playsimple;
+package hacker_earth.interview.playsimple;
 
 import java.io.BufferedReader;
 import java.io.IOException;

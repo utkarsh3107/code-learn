@@ -1,4 +1,4 @@
-package structural.decorator;
+package design_patterns.structural.decorator;
 
 public interface IceCream {
 	String makeIceCream();

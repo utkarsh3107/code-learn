@@ -5,7 +5,7 @@
  * 
  * https://stackoverflow.com/questions/29876641/what-is-the-purpose-of-passing-parameter-to-synchronized-block
  */
-package creational.singelton;
+package design_patterns.creational.singelton;
 
 /**
  * @author utkarsh

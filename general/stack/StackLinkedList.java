@@ -1,4 +1,4 @@
-package stack;
+package general.stack;
 
 public class StackLinkedList{
     

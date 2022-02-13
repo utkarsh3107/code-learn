@@ -1,3 +1,5 @@
+package codechef.dump;
+
 import java.util.*;
 import java.io.*;
 public class Ideone {

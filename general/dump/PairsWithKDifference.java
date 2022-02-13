@@ -1,7 +1,7 @@
 /**
  * 
  */
-package selfstudy;
+package general.dump;
 
 import java.util.HashSet;
 

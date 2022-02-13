@@ -1,4 +1,4 @@
-package codemonk.sorting;
+package hacker_earth.codemonk.sorting;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;

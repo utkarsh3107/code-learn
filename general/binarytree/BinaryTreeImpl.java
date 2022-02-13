@@ -1,10 +1,10 @@
-package binarytree;
+package general.binarytree;
 
 import java.util.Arrays;
 import java.util.Comparator;
 
-import queue.QueueArrayImpl;
-import stack.StackLinkedListImpl;
+import general.queue.QueueArrayImpl;
+import general.stack.StackLinkedListImpl;
 
 public class BinaryTreeImpl {
 	private BinaryTree root;

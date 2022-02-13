@@ -1,4 +1,4 @@
-package interview.capillary;
+package hacker_earth.interview.capillary;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;

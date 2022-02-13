@@ -31,7 +31,7 @@ Test case 1: Remaining numbers are [2, 3, 4]. 3 is the 2nd smallest remaining nu
 
 Test case 2: Remaining numbers are [2, 4, 5]. 4th smallest remaining number doesn't exist.
  */
-package practice.binarySearch;
+package hacker_earth.practice.binarySearch;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;

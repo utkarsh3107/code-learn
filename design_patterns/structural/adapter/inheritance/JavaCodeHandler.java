@@ -1,7 +1,7 @@
 /**
  * 
  */
-package structural.adapter.inheritance;
+package design_patterns.structural.adapter.inheritance;
 
 /**
  * @author utkarsh
