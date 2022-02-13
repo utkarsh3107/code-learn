@@ -34,31 +34,37 @@ public class FirstBadVersion{
         this.n = n;
     }
     public static void main(String[] args){
-        int n = 5;
-        int bad = 4;
-
+        int n = 2126753390;
+        int bad = 1702766719;
+    
         FirstBadVersion obj = new FirstBadVersion(n, bad);
         System.out.println(obj.firstBadVersion(n));
     }
 
     public int firstBadVersion(int n) {
-        return binarySearch(1, n);
+        return (int)binarySearch(1, n);
       }
   
-      private int binarySearch(int leftIndex, int rightIndex){
-          int mid = (leftIndex + rightIndex) / 2;
-          
-          if(leftIndex >= rightIndex){
-              if(isBadVersion(rightIndex)){
-                  return rightIndex;
-              }else{
-                  return rightIndex +  1;
-              }
-          }else if(isBadVersion(mid)){
-               return binarySearch(leftIndex, mid - 1);
-          }else{
-              return binarySearch(mid + 1, rightIndex);
+      private long binarySearch(long leftIndex, long rightIndex){
+          try{
+            long mid = (leftIndex + rightIndex) / 2;
+            System.out.println("leftIndex:" + leftIndex + ", rightIndex:" + rightIndex + ", mid:" + mid);
+            
+            if(leftIndex >= rightIndex){
+                if(isBadVersion((int)rightIndex)){
+                    return rightIndex;
+                }else{
+                    return rightIndex +  1;
+                }
+            }else if(isBadVersion((int)mid)){
+                 return binarySearch(leftIndex, mid - 1);
+            }else{
+                return binarySearch(mid + 1, rightIndex);
+            }
+          }catch(Exception ex){
+            throw ex;
           }
+         
       }
 
     public boolean isBadVersion(int version){
